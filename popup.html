@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      width: 300px;
+      background: #1a1e2e;
+      color: #d8dee9;
+      font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', 'Courier New', monospace;
+      font-size: 12px;
+    }
+
+    .menu-bar {
+      background: #2c3350;
+      padding: 6px 12px;
+      border-bottom: 2px solid #3b4261;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .menu-bar .brand {
+      background: #e5c07b;
+      color: #1a1e2e;
+      font-weight: bold;
+      padding: 1px 6px;
+      font-size: 11px;
+    }
+
+    .menu-bar .subtitle {
+      color: #636d83;
+      font-size: 11px;
+    }
+
+    .content {
+      padding: 12px;
+    }
+
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #3b4261;
+      margin-bottom: 8px;
+    }
+
+    .toggle-label { color: #d8dee9; }
+
+    .status { font-size: 11px; margin-top: 2px; }
+    .status.on { color: #98c379; }
+    .status.off { color: #636d83; }
+
+    .switch { position: relative; width: 44px; height: 22px; cursor: pointer; }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider {
+      position: absolute; inset: 0;
+      background: #3b4261; border: 1px solid #4b5575;
+      transition: 0.2s;
+    }
+    .slider:before {
+      content: ""; position: absolute;
+      height: 16px; width: 16px; left: 2px; bottom: 2px;
+      background: #636d83; transition: 0.2s;
+    }
+    input:checked + .slider { background: #2c4a3e; border-color: #98c379; }
+    input:checked + .slider:before { transform: translateX(22px); background: #98c379; }
+
+    .shortcut {
+      padding: 6px 0;
+      border-bottom: 1px solid #3b4261;
+      margin-bottom: 8px;
+    }
+    .shortcut-label { color: #636d83; font-size: 10px; margin-bottom: 4px; }
+    .keys { display: flex; gap: 3px; align-items: center; }
+    kbd {
+      background: #2c3350; border: 1px solid #3b4261;
+      padding: 1px 5px; color: #e5c07b; font-family: inherit; font-size: 11px;
+    }
+    .plus { color: #636d83; font-size: 10px; }
+
+    .footer {
+      color: #4b5575; font-size: 10px; line-height: 1.5;
+    }
+    .footer a { color: #56b6c2; text-decoration: none; }
+
+    .status-bar {
+      background: #2c3350;
+      border-top: 2px solid #3b4261;
+      padding: 4px 12px;
+      display: flex;
+      gap: 4px;
+      margin-top: 8px;
+    }
+    .status-bar .key {
+      background: #e5c07b; color: #1a1e2e;
+      font-weight: bold; padding: 0 3px; font-size: 10px;
+    }
+    .status-bar .label { color: #d8dee9; font-size: 10px; margin-right: 8px; }
+  </style>
+</head>
+<body>
+  <div class="menu-bar">
+    <span class="brand">linkedin_terminal_emulator</span>
+    <span class="subtitle">text mode</span>
+  </div>
+
+  <div class="content">
+    <div class="toggle-row">
+      <div>
+        <div class="toggle-label">Text Mode</div>
+        <div class="status off" id="status-text">OFF</div>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="toggle">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="shortcut">
+      <div class="shortcut-label">KEYBOARD SHORTCUT</div>
+      <div class="keys">
+        <kbd>Alt</kbd><span class="plus">+</span>
+        <kbd>Shift</kbd><span class="plus">+</span>
+        <kbd>L</kbd>
+      </div>
+    </div>
+
+    <div class="footer">
+      Text-only feed. Keeps headshots.<br>
+      Keyboard-first reading mode for LinkedIn.
+    </div>
+  </div>
+
+  <div class="status-bar">
+    <span class="key">^T</span><span class="label">Toggle</span>
+    <span class="key">?</span><span class="label">Help</span>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
